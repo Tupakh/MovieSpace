@@ -1,0 +1,38 @@
+<div class="popular-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-4 mb-2">
+                <h2>{{title}}</h2>
+            </div>
+        </div>
+        <div class="justify-content-center" id="loading">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div *ngIf="popularMovies && popularMovies.length" class="row">
+            <div *ngFor="let popularMovies of popularMovies" class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card card mb-3 box-shadow">
+                    <a [routerLink]="['/popular', popularMovies.id]" title='{{popularMovies.title}}'>
+                        <img alt='{{popularMovies.title}}'
+                             class="card-img-top card-movie"
+                             src='https://image.tmdb.org/t/p/w220_and_h330_face/{{popularMovies.poster_path}}' title='{{popularMovies.title}}'>
+                    </a>
+                    <i (click)="addRemoveFavorite(popularMovies.id , popularMovies.favorite)" aria-hidden="true"
+                       class="fa fa-heart {{popularMovies.favorite ? 'fav' : 'unfav'}}"
+                       title="{{popularMovies.favorite ? 'Remove Favorite' : 'Add Favorite'}}"></i>
+                    <div class="card-body">
+                        <a [routerLink]="['/popular', popularMovies.id]" title='{{popularMovies.title}}'>
+                            <h5 class="card-title">{{popularMovies.title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{popularMovies.release_date | date:'mediumDate' }}</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ngb-pagination (pageChange)="pageChange($event)" class="d-flex justify-content-center" [collectionSize]="totalResults" [pageSize]="pageSize" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>
+

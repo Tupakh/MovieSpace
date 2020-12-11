@@ -1,0 +1,40 @@
+<div class="bg-movieDetail">
+    <div class="container">
+        <div class="justify-content-center" id="loading">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div *ngIf="detailedMovie" class="row">
+            <div class="card bg-dark text-white">
+                <img alt="{{detailedMovie.title}}"
+                     class="card-img"
+                     src="{{ detailedMovie.backdrop_path ? 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces' + detailedMovie.backdrop_path : 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(blur)/6sGSCILj5JuqhQB6P0s7BULTA85.jpg' }}">
+                <div class="card-img-overlay">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img alt="{{detailedMovie.title}}"
+                                     class="card-img"
+                                     src="{{ detailedMovie.poster_path ? 'https://image.tmdb.org/t/p/w220_and_h330_face/' + detailedMovie.poster_path : 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg' }}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="mt-4 mb-2">
+                                    <h2 class="card-title">{{detailedMovie.title}} <span
+                                        class="tag release_date">({{detailedMovie.release_date | date:'yyyy' }})</span>
+                                    </h2>
+                                </div>
+                                <h3 class="tagline">{{detailedMovie.tagline}}</h3>
+                                <div class="mt-4 mb-2">
+                                    <h3 class="card-title">Overview</h3>
+                                </div>
+                                <p class="card-text">{{detailedMovie.overview}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
